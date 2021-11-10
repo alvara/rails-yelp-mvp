@@ -1,2 +1,19 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+<div class="row text-center">
+  <div class="col-md-12">
+    <h2><%= @restaurant.name %></h2>
+    <p>Address: <%= @restaurant.address %></p>
+    <p>Category: <%= @restaurant.category %></p>
+    <hr>
+  </div>
+
+  <div class="col-md-12">
+      <h2 class="mb-3">Trusted Reviews</h2>
+      <%= link_to 'Write a review', new_restaurant_review_path(@restaurant), class: 'btn btn-primary' %>
+      <% @restaurant.reviews.each do |review| %>
+        <blockquote class="blockquote">
+          <p><%= review.content %></p>
+        <footer class="blockquote-footer">Anonymous Reviewer <cite title="Source Title">Source Title</cite></footer>
+        </blockquote>
+      <% end %>
+  </div>
+</div>

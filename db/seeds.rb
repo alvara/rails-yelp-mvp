@@ -5,3 +5,26 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+p 'clearing database for new seeds'
+Restaurant.destroy_all
+p 'creating example restaurants..'
+20.times do
+  new_rest = Restaurant.create!(
+    name: Faker::Restaurant.name,
+    address: Faker::TvShows::GameOfThrones.city,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    category: Restaurant::CATEGORIES.sample
+  )
+
+  # seed reviews too
+  10.times do
+    Review.create!(
+      rating: (0..5).to_a.sample,
+      content: Faker::TvShows::GameOfThrones.quote,
+      restaurant: new_rest
+    )
+  end
+end
+
+p 'finished seeding test db..'

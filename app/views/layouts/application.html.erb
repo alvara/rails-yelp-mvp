@@ -14,6 +14,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-brand mx-auto text-center">
+      <%= link_to restaurants_path  do %>
+        <i class="fas fa-utensils"></i>
+      <% end %>
+      </span>
+    </nav>
+
+    <div class="container mt-5">
+        <%= yield %>
+    </div>
   </body>
 </html>
